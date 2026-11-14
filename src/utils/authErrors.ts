@@ -21,7 +21,7 @@ export const getAuthErrorMessage = (error: unknown): string => {
         case "auth/invalid-email":
             return "El correo electrónico no es válido.";
 
-        case "auth/weak password":
+        case "auth/weak-password":
             return "La contraseña debe tener al menos 6 caracteres.";
 
 
