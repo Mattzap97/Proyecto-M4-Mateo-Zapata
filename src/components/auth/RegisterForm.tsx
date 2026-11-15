@@ -22,7 +22,7 @@ const RegisterForm = () => {
 
 
     const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault;
+        event.preventDefault();
         setError ("");
 
         if (password !== confirmPassword) {
