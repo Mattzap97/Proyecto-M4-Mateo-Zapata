@@ -8,6 +8,7 @@ Tiene 4 responsabilidades:
 4. Registrar al usuario mediante firebase
 ==============================================================================================================================================================================================================*/
 
+import { useNavigate } from "react-router"
 import { useState, type FormEvent } from "react";
 import { registerWithEmail } from "../../services/firebase/authService";
 import { getAuthErrorMessage } from "../../utils/authErrors";
@@ -19,6 +20,9 @@ const RegisterForm = () => {
     const [confirmPassword, setConfirmPassword] = useState ("");
     const [error, setError] = useState ("");
     const [loading, setLoading] = useState (false);
+
+
+    const navigate = useNavigate();
 
 
     const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
@@ -34,6 +38,7 @@ const RegisterForm = () => {
 
         try {
             await registerWithEmail (email, password);
+            navigate("/tasks", { replace: true });
 
         } catch (error) {
             setError(getAuthErrorMessage(error));

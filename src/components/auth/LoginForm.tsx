@@ -2,6 +2,7 @@
                     COMPONENTE RESPONSABLE DE MOSTRAR EL FORMULARIO Y EJECUTAR LAS FUNCIONES DE AUTENTICACIÓN
 =============================================================================================================================================================================================================*/
 
+import { useNavigate, useLocation } from "react-router"
 import { useState, type FormEvent } from "react";
 import { loginWithEmail, loginWithGoogle } from "../../services/firebase/authService";
 import { getAuthErrorMessage } from "../../utils/authErrors";
@@ -13,6 +14,30 @@ const LoginForm = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const redirectState = location.state as {
+        from?: {
+            pathname?: string;
+            search?: string;
+            hash?: string;
+        };
+    } | null;
+
+    const requestedPath = redirectState?.from?.pathname;
+
+
+    const redirectTo =
+        requestedPath?.startsWith("/") &&
+        !requestedPath.startsWith("/")
+            ? `${requestedPath}${redirectState.from?.search ?? ""}${redirectState.from?.hash ?? ""}`
+            : "/tasks";
+
+
+
     const handleEmailLogin = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setError("");
@@ -20,6 +45,7 @@ const LoginForm = () => {
 
         try {
             await loginWithEmail(email, password);
+            navigate(redirectTo, { replace: true });
 
         } catch (error) {
             setError(getAuthErrorMessage(error));
@@ -38,6 +64,7 @@ const LoginForm = () => {
 
         try {
             await loginWithGoogle();
+            navigate(redirectTo, { replace: true });
 
         } catch (error) {
             setError(getAuthErrorMessage(error));
@@ -97,7 +124,8 @@ const LoginForm = () => {
     )
 }
 
-
-
-
 export default LoginForm;
+
+
+
+
