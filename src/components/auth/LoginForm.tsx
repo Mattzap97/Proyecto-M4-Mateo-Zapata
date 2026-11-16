@@ -32,8 +32,8 @@ const LoginForm = () => {
 
     const redirectTo =
         requestedPath?.startsWith("/") &&
-        !requestedPath.startsWith("/")
-            ? `${requestedPath}${redirectState.from?.search ?? ""}${redirectState.from?.hash ?? ""}`
+            !requestedPath.startsWith("//")
+            ? `${requestedPath}${redirectState?.from?.search ?? ""}${redirectState?.from?.hash ?? ""}`
             : "/tasks";
 
 
