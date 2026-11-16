@@ -129,7 +129,7 @@ const LoginForm = () => {
                         required
                     />
 
-                    {fieldErrors.email && (<p role="alert">{fieldErrors.email}</p>)};
+                    {fieldErrors.email && (<p role="alert">{fieldErrors.email}</p>)}
                 </div>
 
                 <div>
@@ -142,7 +142,7 @@ const LoginForm = () => {
                         required
                     />
 
-                    {fieldErrors.password && (<p role="alert">{fieldErrors.password}</p>)};
+                    {fieldErrors.password && (<p role="alert">{fieldErrors.password}</p>)}
                 </div>
 
                 {error && <p role="alert">{error}</p>}

@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProvider>
       <BrowserRouter>
-        <App />  //Ruta principal de la aplicación
+        <App />      {/*Ruta principal de la aplicación*/}
       </BrowserRouter>
     </AuthProvider>
   </React.StrictMode>
