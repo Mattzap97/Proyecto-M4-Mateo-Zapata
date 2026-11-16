@@ -8,12 +8,40 @@ import { loginWithEmail, loginWithGoogle } from "../../services/firebase/authSer
 import { getAuthErrorMessage } from "../../utils/authErrors";
 
 
+interface LoginFormState {
+    email: string;
+    password: string;
+}
+
+
+function validateLogin( form: LoginFormState ) {
+    const errors: Partial<Record<keyof LoginFormState, string>> = {};
+
+    if (
+
+        !form.email.trim ||
+        !form.email.includes('@') ||
+        !form.email.includes('.')
+    ) {
+        errors.email = "Ingresa un email válido.";
+    }
+
+    if (!form.password.trim() || form.password.length < 6) {
+        errors.password = "La contraseña debe tener al menos 6 caracteres.";
+    }
+
+    return errors;
+
+
+}
+
+
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-
+    const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof LoginFormState, string>>>({});
 
 
     const navigate = useNavigate();
@@ -41,10 +69,19 @@ const LoginForm = () => {
     const handleEmailLogin = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setError("");
-        setLoading(true);
+        
+        const validationErrors = validateLogin({ email, password });
+
+        setFieldErrors(validationErrors);
+
+        if (Object.keys(validationErrors).length > 0) {
+            return;
+        }
+
+        setLoading (true);
 
         try {
-            await loginWithEmail(email, password);
+            await loginWithEmail(email.trim(), password);
             navigate(redirectTo, { replace: true });
 
         } catch (error) {
@@ -81,7 +118,7 @@ const LoginForm = () => {
 
             <h2>Iniciar sesión</h2>
 
-            <form onSubmit={handleEmailLogin}>
+            <form onSubmit={handleEmailLogin} noValidate>
                 <div>
                     <label htmlFor="email">Correo Electrónico</label>
                     <input
@@ -91,6 +128,8 @@ const LoginForm = () => {
                         onChange={(event) => setEmail(event.target.value)}
                         required
                     />
+
+                    {fieldErrors.email && (<p role="alert">{fieldErrors.email}</p>)};
                 </div>
 
                 <div>
@@ -102,6 +141,8 @@ const LoginForm = () => {
                         onChange={(event) => setPassword(event.target.value)}
                         required
                     />
+
+                    {fieldErrors.password && (<p role="alert">{fieldErrors.password}</p>)};
                 </div>
 
                 {error && <p role="alert">{error}</p>}

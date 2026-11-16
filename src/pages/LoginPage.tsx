@@ -3,6 +3,7 @@
 =======================================================================================================================================================*/
 
 import LoginForm from "../components/auth/LoginForm";
+import { Link } from "react-router";
 
 const LoginPage = () => {
 
@@ -10,6 +11,12 @@ const LoginPage = () => {
 
         <main className="auth-page">
             <LoginForm/>
+
+            <p>
+                ¿No tienes una cuenta?{" "}
+                <Link to="/register">Regístrate aquí</Link>
+            </p>
+            
         </main>
 
     )
