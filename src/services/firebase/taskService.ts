@@ -84,7 +84,7 @@ export async function updateTask (
 }
 
 // Cambiar el estado de finalización de la tarea
-export async function toogleTaskCompleted (
+export async function toggleTaskCompleted (
     taskId: string,
     completed: boolean,
 
@@ -108,5 +108,5 @@ export async function deleteTask (
 
 ): Promise<void> {
     await deleteDoc(doc(db, "tasks", taskId));
-    
+
 }
