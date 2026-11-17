@@ -60,18 +60,20 @@ export const useTasks = () => {
         title: string,
         description: string
 
-    ) => {
+    ): Promise<boolean> => {
         if(!userId) {
             setError("Debes iniciar sesión para crear tareas.");
-            return;
+            return false;
         }
 
         try {
             setError(null);
             await createTaskService(userId, title, description)
+            return true;
 
         } catch (error) {
             setError(getTaskErrorMessage(error));
+            return false;
 
         }
 
@@ -84,14 +86,21 @@ export const useTasks = () => {
         title: string,
         description: string
 
-    ) => {
+    ): Promise<boolean> => {
+        if(!userId) {
+            setError("Debes iniciar sesión para editar tareas")
+            return false;
+        }
+
 
         try {
             setError(null);
             await updateTaskService(taskId, title, description);
+            return true;
 
         } catch (error) {
             setError(getTaskErrorMessage(error));
+            return false;
 
         }
     };
