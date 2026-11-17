@@ -1,4 +1,4 @@
-import { addDoc, collection, serverTimestamp,onSnapshot, query, where, type Unsubscribe, orderBy } from "firebase/firestore";
+import { addDoc, doc, updateDoc, deleteDoc, collection, serverTimestamp,onSnapshot, query, where, type Unsubscribe, orderBy } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 import type { Task } from "../../types/task";
 
@@ -33,12 +33,12 @@ export const createTask = async (
                             CRUD DE TAREAS -- OBTENER O LEER LAS TAREAS DE UN USUARIO EN TIEMPO REAL
 =====================================================================================================================================================================*/
 
-export const suscribeToTasks = (
+export function suscribeToTasks (
     userId: string,
     onTasksChange: (tasks: Task[]) => void,
     onError: (error: Error) => void,
 
-) : Unsubscribe => {
+) : Unsubscribe {
 
     const tasksQuery = query (
         collection (db, "tasks"),
@@ -63,4 +63,41 @@ export const suscribeToTasks = (
         onError
     );
 
+}/*====================================================================================================================================================================
+                                                CRUD DE TAREAS -- ACTUALIZAR TAREA
+======================================================================================================================================================================*/
+
+export async function updateTask (
+    taskId: string,
+    title: string,
+    description: string
+
+): Promise<void> {
+    await updateDoc(doc(db, "tasks", taskId), {
+
+        title: title.trim(),
+        description: description.trim(),
+        updatedAt: serverTimestamp(),
+
+    });
+
 }
+
+// Cambiar el estado de finalización de la tarea
+export async function toogleTaskCompleted (
+    taskId: string,
+    completed: boolean,
+
+): Promise <void> {
+    await updateDoc(doc(db, "tasks", taskId), {
+
+        completed,
+        updatedAt: serverTimestamp(),
+
+    });
+
+}
+
+
+
+
