@@ -33,7 +33,7 @@ export const createTask = async (
                             CRUD DE TAREAS -- OBTENER O LEER LAS TAREAS DE UN USUARIO EN TIEMPO REAL
 =====================================================================================================================================================================*/
 
-export function suscribeToTasks (
+export function subscribeToTasks (
     userId: string,
     onTasksChange: (tasks: Task[]) => void,
     onError: (error: Error) => void,

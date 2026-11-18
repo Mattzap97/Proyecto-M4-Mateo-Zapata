@@ -4,7 +4,7 @@ import { useAuth } from "./useAuth";
 
 import {
     createTask as createTaskService,
-    suscribeToTasks,
+    subscribeToTasks,
     updateTask as updateTaskService,
     toggleTaskCompleted as toggleTaskCompletedService,
     deleteTask as deleteTaskService
@@ -21,6 +21,8 @@ export const useTasks = () => {
 
     const userId = user?.uid;
 
+    
+
     // Escuchar los cambios de firestore
     useEffect(() => {
 
@@ -34,7 +36,7 @@ export const useTasks = () => {
         setError(null);
 
 
-        const unsubscribe = suscribeToTasks(
+        const unsubscribe = subscribeToTasks(
 
             userId,
             (updatedTasks) => {
@@ -53,6 +55,7 @@ export const useTasks = () => {
         return () => unsubscribe();
 
     }, [userId]);
+
 
 
     // Crear tarea
