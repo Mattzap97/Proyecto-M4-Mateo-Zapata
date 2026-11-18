@@ -1,33 +1,40 @@
+
 import type { Task } from "../../types/task";
 import TodoItem from "./TodoItem";
 
 
-
-// Definición de las propiedades del componente
 interface TodoListProps {
     tasks: Task[];
     onToggle: (taskId: string, completed: boolean) => Promise<void>;
-    onEdit: (task: Task) => void,
-    onDelete: (taskId: string) => Promise<void>
+    onEdit: (task: Task) => void;
+    onDelete: (taskId: string) => Promise<void>;
 }
-
 
 const TodoList = ({
     tasks,
     onToggle,
     onEdit,
-    onDelete
+    onDelete,
 }: TodoListProps) => {
 
+    if (tasks.length === 0) {
+        return (
+            <div className="empty-state">
+                <span className="empty-state__icon">✦</span>
 
-    // Comprobar si existen tareas
-    if(tasks.length === 0) {
-        return <p>No tienes tareas pendientes.</p>
+                <h3>¡Todo comienza aquí!</h3>
+
+                <p>No tienes tareas pendientes.</p>
+
+                <span className="empty-state__hint">
+                    Crea una actividad y comienza a organizarte.
+                </span>
+            </div>
+        );
     }
 
-
     return (
-        <ul className="todo-list">
+        <ul className="task-list">
             {tasks.map((task) => (
                 <TodoItem
                     key={task.id}
@@ -38,9 +45,7 @@ const TodoList = ({
                 />
             ))}
         </ul>
-    )
-}
-
-
+    );
+};
 
 export default TodoList;
