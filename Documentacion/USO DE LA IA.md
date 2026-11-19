@@ -71,11 +71,15 @@ La respuesta de la IA permitió implementar de manera sencilla un enlace adjunto
 
 ## Prompt:
 
-Ayúdame agregando una funcionalidad para validar el formato de un correo electrónico dentro del código que ya tenemos y de esta manera comunicar al usuario un mensaje de error al momento de ingresar una dirección de email no válida
+Ayúdame agregando una funcionalidad para validar el formato de un correo electrónico tanto para /login y /register y de esta manera comunicar al usuario mediante un mensaje de error al momento de ingresar una dirección de email no válida. No realices cambios innecesarios dentro de la lógica ya funcional en los formularios. Únicamente guíame para agregar la funcionalidad que te solicité.
 
-<p align="center"
+<p align="center">
+<img width="70%" height="40%" alt="PROMPT 6-2" src="https://github.com/user-attachments/assets/2d97ce81-3351-4109-a199-10fabc1f585f" />
 <img width="70%" height="40%" alt="PROMPT 6-3" src="https://github.com/user-attachments/assets/739fdfa1-c257-4739-8326-c6331399a0f1" />
 <img width="70%" height="40%" alt="PROMPT 6-4" src="https://github.com/user-attachments/assets/9cad56ff-2580-442d-8763-7d93b9c8e182" />
+
+La respuesta de la IA permitió incorporar esa función![Uploading PROMPT 6-2.jpg…]()
+ al momento de ingresar un correo electrónico y de esta manera garantizar que el usuario no olvide agregar "@" o evitar formatos de email no válidos.
 
 
 
