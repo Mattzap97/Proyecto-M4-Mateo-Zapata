@@ -8,7 +8,7 @@ Demo en producción: https://proyecto-m4-mateo-zapata.vercel.app
 
 Repositorio GitHub: https://github.com/Mattzap97/Proyecto-M4-Mateo-Zapata
 
-## Funcionalidades
+## Funcionalidades 💯
 
 ### Autenticación
 
@@ -36,7 +36,7 @@ Repositorio GitHub: https://github.com/Mattzap97/Proyecto-M4-Mateo-Zapata
 4. Confirmaciones y mensajes de error en la interfaz.
 5. Credenciales de AWS protegidas en el entorno backend.
 
-## Tecnologías utilizadas
+## Tecnologías utilizadas 📶
 
 <div align="center">
 
@@ -63,7 +63,7 @@ Repositorio GitHub: https://github.com/Mattzap97/Proyecto-M4-Mateo-Zapata
 </div>
 
 
-## Arquitectura y estructura del proyecto
+## Arquitectura y estructura del proyecto 📐
 
 El proyecto utiliza una arquitectura por capas que separa componentes visuales, lógica de negocio, servicios externos y tipos compartidos.
 ```
@@ -144,7 +144,7 @@ Proyecto M4 - Mateo Zapata/
 - **api/:** se utiliza en lugar de una carpeta functions/ porque Vercel reconoce automáticamente esta estructura para sus funciones serverless.
 
 
-## Firebase Authentication y Cloud Firestore
+## Firebase Authentication y Cloud Firestore 🚨
 
 ### Autenticación
 Se habilitaron los proveedores Email/Password y Google en Firebase Authentication.
@@ -190,7 +190,7 @@ Se realizaron simulaciones en Firebase Rules Playground con usuarios autenticado
 
 Las reglas aplicadas se deben mantener versionadas en el repositorio como firestore.rules para facilitar su revisión y despliegue.
 
-## Integración con AWS SES y Vercel
+## Integración con AWS SES y Vercel 🔂
 
 Amazon SES se utiliza para enviar los resúmenes de tareas al correo electrónico del usuario autenticado.
 
@@ -219,7 +219,7 @@ La política de confianza del rol restringe la identidad OIDC al proyecto y al e
 Esta arquitectura permite utilizar credenciales temporales de AWS y evita almacenar claves permanentes en el frontend.
 
 
-## Flujo de envío de emails
+## Flujo de envío de emails 📩
 
 El proceso se encuentra desacoplado de React para proteger las credenciales del servidor.
 
@@ -259,7 +259,7 @@ El frontend no se comunica directamente con AWS. La función serverless verifica
 **Nota:** Amazon SES puede operar en Sandbox. En ese estado, los destinatarios también deben estar verificados. Para enviar a otros correos sin esa verificación individual se requiere aprobación de acceso de producción por parte de AWS. La recepción del correo de prueba en producción fue comprobada durante el desarrollo.
 
 
-## Variables de entorno
+## Variables de entorno 💬
 
 El proyecto utiliza .env para desarrollo local y .env.example como plantilla sin valores reales.
 
@@ -291,7 +291,7 @@ No se utilizan AWS_ACCESS_KEY_ID ni AWS_SECRET_ACCESS_KEY permanentes para la in
 - Después de modificar variables en Vercel debe realizarse un nuevo deployment.
 
 
-## Instalación y ejecución local
+## Instalación y ejecución local 💻
 
 ### Requisitos
 
@@ -326,7 +326,7 @@ La prueba del envío AWS también requiere que la política de confianza OIDC au
 
 
 
-## Testing con Vitest y React Testing Library
+## Testing con Vitest y React Testing Library 🧪
 
 Se implementaron pruebas automatizadas para comprobar el comportamiento de los componentes principales y el Hook de tareas.
 
@@ -370,7 +370,7 @@ npm run build
 Resultado verificado: 3 archivos de pruebas aprobados y 9 tests exitosos.
 
 
-## Reglas de seguridad de Cloud Firestore
+## Reglas de seguridad de Cloud Firestore 🛡
 
 El archivo [`firestore.rules`](./firestore.rules)  garantiza el principio de mínimo privilegio:
 
@@ -444,4 +444,16 @@ service cloud.firestore {
 }
 ```
 
+## Uso de inteligencia artificial 🤖
+
+Se utilizaron ChatGPT y Gemini mediante Antigravity IDE como herramientas de apoyo durante el desarrollo.
+
+### La IA fue especialmente útil en:
+
+- Comprender React, TypeScript, Hooks y Context API.
+- Diseñar la separación de responsabilidades.
+- Diagnosticar errores de Firebase, Firestore y Vercel.
+- Configurar AWS SES, IAM y OIDC.
+- Diseñar pruebas con Vitest y React Testing Library.
+- Mejorar el diseño responsive sin romper las reglas CSS para Mobile-first previamente desarrolladas.
 
