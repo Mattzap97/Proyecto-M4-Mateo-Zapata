@@ -410,6 +410,53 @@
   font-size: 0.82rem;
 }
 
+
+
+/* FECHAS DE CREACIÓN Y ACTUALIZACIÓN */
+
+.task-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  width: 100%;
+  min-width: 0;
+  margin-top: 16px;
+  padding-top: 12px;
+
+  border-top: 1px solid var(--border);
+}
+
+.task-metadata__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  min-width: 0;
+  margin: 0;
+
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.task-metadata__icon {
+  flex-shrink: 0;
+  width: 16px;
+
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.task-metadata__item strong {
+  color: var(--text-primary);
+  font-weight: 650;
+}
+
+
+
 .button-secondary {
   background: var(--secondary);
 }

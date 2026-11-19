@@ -3,6 +3,26 @@ import { useState } from "react";
 import type { Task } from "../../types/task";
 
 
+// Formatear fechas de Firestore
+const formatTaskDate = (
+    timestamp: Task["createdAt"] | null | undefined
+) => {
+    if (!timestamp || typeof timestamp.toDate !== "function") {
+        return null;
+    }
+
+    const date = timestamp.toDate();
+
+    return {
+        label: new Intl.DateTimeFormat("es-EC", {
+            dateStyle: "medium",
+            timeStyle: "short",
+        }).format(date),
+        iso: date.toISOString(),
+    };
+};
+
+
 interface TodoItemProps {
     task: Task;
     onToggle: (taskId: string, completed: boolean) => Promise<void>;
@@ -19,6 +39,10 @@ const TodoItem = ({
 
     const [loading, setLoading] = useState(false);
 
+    const createdAt = formatTaskDate(task.createdAt);
+    const updatedAt = formatTaskDate(task.updatedAt);
+
+
     // Cambiar estado
     const handleToggle = async () => {
         setLoading(true);
@@ -29,6 +53,7 @@ const TodoItem = ({
             setLoading(false);
         }
     };
+
 
     // Eliminar tarea
     const handleDelete = async () => {
@@ -101,10 +126,51 @@ const TodoItem = ({
 
                 </div>
 
+                {/* Información de fechas */}
+                <div className="task-metadata">
+
+                    <p className="task-metadata__item">
+                        <span className="task-metadata__icon" aria-hidden="true">
+                            ◷
+                        </span>
+
+                        <span>
+                            <strong>Creada:</strong>{" "}
+                            {createdAt ? (
+                                <time dateTime={createdAt.iso}>
+                                    {createdAt.label}
+                                </time>
+                            ) : (
+                                "No disponible"
+                            )}
+                        </span>
+                    </p>
+
+                    <p className="task-metadata__item">
+                        <span className="task-metadata__icon" aria-hidden="true">
+                            ↻
+                        </span>
+
+                        <span>
+                            <strong>Última actualización:</strong>{" "}
+                            {updatedAt ? (
+                                <time dateTime={updatedAt.iso}>
+                                    {updatedAt.label}
+                                </time>
+                            ) : (
+                                "No disponible"
+                            )}
+                        </span>
+                    </p>
+
+                </div>
+
             </article>
 
         </li>
     );
 };
+
+
 
 export default TodoItem;
