@@ -92,6 +92,19 @@ Agregué estas nuevas reglas para ubicarlas dentro de Firebase Console e hice la
 La respuesta de la IA permitió tener la seguridad de que las nuevas reglas dentro de Firebase cumplían con su funcionalidad y de esta manera se pudo corregir un error que no permitían la correcta simulación de datos ingresados dentro de la consola. Posteriormente se agregaron estas reglas dentro del archivo [`firestore.rules`](./firestore.rules)
 
 
+## Prompt:
+
+Antes de continuar necesito que me aclares una duda... por qué la función suscribetotasks no es asíncrona?. Actúa como tutor de desarrollador full stack y explícame brevemente el motivo por el que esa función no implementa export async function como las anteriores que sí son asíncronas.
+
+<p align="center">
+<img width="70%" height="40%" alt="PROMPT8" src="https://github.com/user-attachments/assets/d1e68847-d0d8-46cc-ad8d-72bca398c981" />
+<img width="70%" height="40%" alt="PROMPT8-1" src="https://github.com/user-attachments/assets/f33eaabf-e428-4990-8b16-2a718843a91e" />
+
+Se ocupó a la IA como tutor para comprender la diferencia de mantener una subscripción activa a los cambios dentro de las tareas del usuario y las operaciones asíncronas que maneja Firestore.
+
+
+
+
 
 
 
