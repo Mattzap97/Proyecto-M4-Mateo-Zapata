@@ -302,7 +302,7 @@ No se utilizan AWS_ACCESS_KEY_ID ni AWS_SECRET_ACCESS_KEY permanentes para la in
 
 ### Instalación
 ```bash
-git clone <URL_DEL_REPOSITORIO> "Proyecto M4 - Mateo Zapata"
+git clone https://github.com/Mattzap97/Proyecto-M4-Mateo-Zapata "Proyecto M4 - Mateo Zapata"
 
 cd "Proyecto M4 - Mateo Zapata"
 
@@ -368,3 +368,6 @@ npm run test:run
 npm run build
 ```
 Resultado verificado: 3 archivos de pruebas aprobados y 9 tests exitosos.
+
+
+
