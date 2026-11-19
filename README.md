@@ -218,3 +218,75 @@ La política de confianza del rol restringe la identidad OIDC al proyecto y al e
 
 Esta arquitectura permite utilizar credenciales temporales de AWS y evita almacenar claves permanentes en el frontend.
 
+
+## Flujo de envío de emails
+
+El proceso se encuentra desacoplado de React para proteger las credenciales del servidor.
+
+```
+Usuario autenticado
+       │
+       ▼
+TasksPage.tsx
+       │
+       ▼
+emailService.ts
+       │
+       │ POST /api/send-summary
+       │ Authorization: Bearer <ID_TOKEN>
+       ▼
+Vercel Function
+api/send-summary.ts
+       │
+       ├── Verifica el Firebase ID Token
+       ├── Obtiene el UID y correo del usuario
+       ├── Consulta Firestore filtrando por userId
+       └── Prepara el resumen de tareas
+       │
+       ▼
+AWS SES (us-east-2)
+       │
+       │ Credenciales temporales mediante OIDC + IAM
+       ▼
+Correo electrónico del usuario
+       │
+       ▼
+Confirmación o error en la interfaz
+```
+
+El frontend no se comunica directamente con AWS. La función serverless verifica la identidad del usuario, recupera sus tareas y utiliza SES para efectuar el envío.
+
+**Nota:** Amazon SES puede operar en Sandbox. En ese estado, los destinatarios también deben estar verificados. Para enviar a otros correos sin esa verificación individual se requiere aprobación de acceso de producción por parte de AWS. La recepción del correo de prueba en producción fue comprobada durante el desarrollo.
+
+
+## Variables de entorno
+
+El proyecto utiliza .env para desarrollo local y .env.example como plantilla sin valores reales.
+
+### Firebase — Frontend
+```
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+```
+### AWS — Backend
+```
+AWS_REGION=us-east-2
+AWS_ROLE_ARN=
+SES_FROM_EMAIL=
+```
+Las variables VITE_FIREBASE_* corresponden a la configuración web pública de Firebase. Las variables de AWS se utilizan exclusivamente en el servidor.
+
+No se utilizan AWS_ACCESS_KEY_ID ni AWS_SECRET_ACCESS_KEY permanentes para la integración OIDC.
+
+### Seguridad:
+
+- .env debe estar incluido en .gitignore.
+- .env.example se versiona sin valores reales.
+- No se deben publicar tokens, secretos ni credenciales AWS.
+- Las variables deben configurarse también en Vercel.
+- Después de modificar variables en Vercel debe realizarse un nuevo deployment.
+
