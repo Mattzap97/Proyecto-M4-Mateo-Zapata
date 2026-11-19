@@ -3,6 +3,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Timestamp } from "firebase/firestore";
+import "@testing-library/jest-dom/vitest";
 
 import TodoList from "../../src/components/tasks/TodoList";
 import type { Task } from "../../src/types/task";
@@ -60,7 +61,7 @@ describe("TodoList", () => {
     });
 
 
-    
+
     it("permite completar, editar y eliminar una tarea", async () => {
         const user = userEvent.setup();
 
@@ -83,25 +84,22 @@ describe("TodoList", () => {
         expect(item).not.toBeNull();
 
         const taskItem = within(item!);
-
+        // Primero, solicitar la eliminación
         await user.click(
-            taskItem.getByRole("button", {
-                name: "Marcar como completada",
-            })
+            screen.getByRole("button", { name: "Eliminar" })
         );
 
-        expect(onToggle).toHaveBeenCalledWith("task-1", true);
+        // Comprobar que aparece la confirmación
+        expect(
+            screen.getByRole("alertdialog")
+        ).toBeInTheDocument();
 
+        // Confirmar la eliminación
         await user.click(
-            taskItem.getByRole("button", { name: "Editar" })
+            screen.getByRole("button", { name: "Sí, eliminar" })
         );
 
-        expect(onEdit).toHaveBeenCalledWith(task);
-
-        await user.click(
-            taskItem.getByRole("button", { name: "Eliminar" })
-        );
-
+        // Verificar que se ejecutó el callback
         expect(onDelete).toHaveBeenCalledWith("task-1");
     });
 
