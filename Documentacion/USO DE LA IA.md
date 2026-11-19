@@ -60,7 +60,34 @@ La respuesta de la IA permitió entender que no se trataba de un error de Fireba
 
 ## Prompt: 
 
-Ayúdame implementando un mensaje en la parte inferior de /login que muestre al usuario: "¿no tienes una cuenta? regístrate aquí". Para que permita dar click en "regístrate aquí" y redireccione al usuario a /register para completar el formulario de registro.
+Actúa como desarrollador frontend y ayúdame a implementar un mensaje en la parte inferior de /login que muestre al usuario: "¿no tienes una cuenta? regístrate aquí". Para que permita dar click en "regístrate aquí" y redireccione al usuario a /register para completar el formulario de registro sin necesidad de recargar la página.
+
+<p align="center">
+<img width="70%" height="40%" alt="PROMPT 6" src="https://github.com/user-attachments/assets/f04e4954-2af4-411e-9943-5ca656e23ca2" />
+<img width="70%" height="40%" alt="PROMPT 6-1" src="https://github.com/user-attachments/assets/a339e452-5508-4bae-b392-d8769aa78bab" />
+
+La respuesta de la IA permitió implementar de manera sencilla un enlace adjunto dentro del mensaje "¿no tienes una cuenta? regístrate aquí" para que el usuario entre a /register sin necesidad de volver al principio del formulario dentro de /login; y de esta manera mantener la funcionalidad de la single page application.
+
+
+## Prompt:
+
+Ayúdame agregando una funcionalidad para validar el formato de un correo electrónico dentro del código que ya tenemos y de esta manera comunicar al usuario un mensaje de error al momento de ingresar una dirección de email no válida
+
+<p align="center"
+<img width="70%" height="40%" alt="PROMPT 6-3" src="https://github.com/user-attachments/assets/739fdfa1-c257-4739-8326-c6331399a0f1" />
+<img width="70%" height="40%" alt="PROMPT 6-4" src="https://github.com/user-attachments/assets/9cad56ff-2580-442d-8763-7d93b9c8e182" />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
