@@ -485,5 +485,5 @@ Se utilizaron ChatGPT y Gemini mediante Antigravity IDE como herramientas de apo
 - Diseñar pruebas con Vitest y React Testing Library.
 - Mejorar el diseño responsive sin romper las reglas CSS para Mobile-first previamente desarrolladas.
 
-Detalle completo de los prompts usados, en orden y con el contexto de qué resolvía cada uno, en [`USO DE LA IA`](./Documentacion/USO-DE-LA-IA.md)
+Detalle completo de los prompts usados, en orden y con el contexto de qué resolvía cada uno, en [`USO DE LA IA`](./Documentacion/USO%20DE%20LA%20IA.md)
 
