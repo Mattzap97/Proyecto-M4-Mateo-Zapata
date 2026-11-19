@@ -66,71 +66,88 @@ Repositorio GitHub: https://github.com/Mattzap97/Proyecto-M4-Mateo-Zapata
 ## Arquitectura y estructura del proyecto 📐
 
 El proyecto utiliza una arquitectura por capas que separa componentes visuales, lógica de negocio, servicios externos y tipos compartidos.
-```
+
+```bash
 Proyecto M4 - Mateo Zapata/
 │
-├── api/
-│   └── send-summary.ts
+├── api/                              # Funciones backend serverless
+│   └── send-summary.ts               # Envía resúmenes mediante AWS SES
 │
-├── src/
-│   ├── components/
-│   │   ├── auth/
-│   │   │   ├── LoginForm.tsx
-│   │   │   └── RegisterForm.tsx
-│   │   └── tasks/
-│   │       ├── TodoForm.tsx
-│   │       ├── TodoItem.tsx
-│   │       └── TodoList.tsx
-│   │
-│   ├── features/
-│   │   └── auth/
-│   │       └── AuthProvider.tsx
-│   │
-│   ├── hooks/
-│   │   ├── useAuth.ts
-│   │   └── useTasks.ts
-│   │
-│   ├── pages/
-│   │   ├── LoginPage.tsx
-│   │   ├── RegisterPage.tsx
-│   │   └── TasksPage.tsx
-│   │
-│   ├── routes/
-│   │   └── ProtectedRoute.tsx
-│   │
-│   ├── services/
-│   │   ├── firebase/
-│   │   │   ├── authService.ts
-│   │   │   ├── firebaseConfig.ts
-│   │   │   └── taskService.ts
-│   │   └── emailService.ts
-│   │
-│   ├── types/
-│   │   └── task.ts
-│   │
-│   ├── utils/
-│   │   └── authErrors.ts
-│   │
-│   ├── App.css
-│   ├── App.tsx
-│   ├── index.css
-│   └── main.tsx
+├── public/                           # Recursos estáticos públicos
 │
-├── tests/
-│   ├── components/
-│   │   ├── TodoForm.test.tsx
-│   │   └── TodoList.test.tsx
-│   ├── hooks/
-│   │   └── useTasks.test.tsx
-│   └── setup.ts
-│ 
-├── .env.example
-├── .gitignore
-├── package.json
-├── package-lock.json
-├── README.md
-├── vercel.json
-└── vite.config.ts
+├── src/                              # Código fuente de la aplicación
+│   │
+│   ├── assets/                       # Recursos gráficos de MateCode
+│   │
+│   ├── components/                   # Componentes reutilizables
+│   │   │
+│   │   ├── auth/                     # Formularios de autenticación
+│   │   │   ├── LoginForm.tsx         # Formulario de inicio de sesión
+│   │   │   └── RegisterForm.tsx      # Formulario de registro de usuarios
+│   │   │
+│   │   └── tasks/                    # Componentes de gestión de tareas
+│   │       ├── TodoForm.tsx          # Formulario para crear tareas
+│   │       ├── TodoItem.tsx          # Presenta y gestiona cada tarea
+│   │       └── TodoList.tsx          # Organiza y presenta las tareas
+│   │
+│   ├── features/                     # Funcionalidades principales
+│   │   └── auth/                     # Gestión global de autenticación
+│   │       └── AuthProvider.tsx      # Proporciona el contexto de autenticación
+│   │
+│   ├── hooks/                        # Hooks personalizados de React
+│   │   ├── useAuth.ts                # Accede al estado de autenticación
+│   │   └── useTasks.ts               # Gestiona el estado de tareas
+│   │
+│   ├── pages/                        # Páginas principales de la SPA
+│   │   ├── LoginPage.tsx             # Página de inicio de sesión
+│   │   ├── RegisterPage.tsx          # Página de registro de usuarios
+│   │   └── TasksPage.tsx             # Panel principal de tareas
+│   │
+│   ├── routes/                       # Configuración de rutas
+│   │   └── ProtectedRoute.tsx        # Protege las rutas privadas
+│   │
+│   ├── services/                     # Servicios externos de la aplicación
+│   │   ├── firebase/                 # Servicios de Firebase
+│   │   │   ├── authService.ts        # Operaciones de autenticación Firebase
+│   │   │   ├── firebaseConfig.ts     # Configuración de conexión Firebase
+│   │   │   └── taskService.ts        # Operaciones CRUD sobre Firestore
+│   │   │
+│   │   └── emailService.ts           # Solicita envío de resúmenes
+│   │
+│   ├── types/                        # Tipos e interfaces TypeScript
+│   │   └── task.ts                   # Define la estructura de tareas
+│   │
+│   ├── utils/                        # Funciones auxiliares
+│   │   └── authErrors.ts             # Traduce errores de autenticación
+│   │
+│   ├── App.css                       # Estilos de la aplicación
+│   ├── App.tsx                       # Composición y enrutamiento principal
+│   ├── index.css                     # Estilos y variables globales
+│   └── main.tsx                      # Punto de entrada de React
+│
+├── tests/                            # Pruebas automatizadas
+│   ├── components/                   # Pruebas de componentes visuales
+│   │   ├── TodoForm.test.tsx         # Prueba el formulario de tareas
+│   │   └── TodoList.test.tsx         # Prueba la lista de tareas
+│   │
+│   ├── hooks/                        # Pruebas de hooks personalizados
+│   │   └── useTasks.test.tsx         # Prueba la gestión de tareas
+│   │
+│   └── setup.ts                      # Configuración global de pruebas
+│
+├── .env.example                      # Plantilla de variables de entorno
+├── .gitignore                        # Excluye archivos del repositorio
+├── .oxlintrc.json                    # Configuración de análisis de código
+├── firestore.rules                   # Reglas de seguridad de Firestore
+├── index.html                        # Documento HTML principal
+├── package.json                      # Dependencias y scripts del proyecto
+├── package-lock.json                 # Versiones bloqueadas de dependencias
+├── README.md                         # Documentación general del proyecto
+├── tsconfig.app.json                 # Configuración TypeScript de la aplicación
+├── tsconfig.json                     # Configuración general de TypeScript
+├── tsconfig.node.json                # Configuración TypeScript para Node.js
+├── vercel.json                       # Configuración de rutas y despliegue
+└── vite.config.ts                    # Configuración de Vite y Vitest
 ```
 
 ### Decisiones arquitectónicas
