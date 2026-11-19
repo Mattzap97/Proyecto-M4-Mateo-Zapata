@@ -48,7 +48,15 @@ El chat dentro de Google Antigravity IDE brindó asistencia a identificar el err
 
 ## Prompt:
 
-Actúa como asistente de desarrollador full stack Me salió este error al compilar la aplicación para verificar su correcto funcionamiento, explicame cúal es el problema y como lo puedo solucionar?
+Actúa como asistente de desarrollador full stack y ayúdame a identificar este error que apareció al compilar la aplicación para verificar su correcto funcionamiento. Explicame cúal es el problema y cómo lo puedo solucionar sin modificar lo innecesario dentro de la lógica actual?.
+
+<p align="center">
+<img width="50%" height="40%" hspace="40" alt="PROMPT5" src="https://github.com/user-attachments/assets/e3699394-f144-4f51-9475-284d6f19ff6c" />
+<img width="50%" height="40%" hspace="40" alt="PROMPT5-1" src="https://github.com/user-attachments/assets/c233cd39-c23c-421b-8e7d-22e04d23706d" />
+<img width="50%" height="40%" hspace="40" alt="PROMPT5-2" src="https://github.com/user-attachments/assets/1805ce9c-5bcf-45a5-9428-f1eb17354088" />
+
+La respuesta de la IA permitió entender que no se trataba de un error de Firebase o ReactRouter, sino más bien que se trataba de un error de Typescript relacionado con el manejo de errores null. Esto permitió modificar dos líneas del código que estaban fallando para agregar Optional Chaining (?.).
+
 
 
 
