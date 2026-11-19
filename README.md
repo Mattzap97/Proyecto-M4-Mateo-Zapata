@@ -290,3 +290,81 @@ No se utilizan AWS_ACCESS_KEY_ID ni AWS_SECRET_ACCESS_KEY permanentes para la in
 - Las variables deben configurarse también en Vercel.
 - Después de modificar variables en Vercel debe realizarse un nuevo deployment.
 
+
+## Instalación y ejecución local
+
+### Requisitos
+
+- Node.js compatible con Vite.
+- npm.
+- Acceso al proyecto de Firebase.
+- Configuración AWS y Vercel para probar el endpoint de correo.
+
+### Instalación
+```bash
+git clone <URL_DEL_REPOSITORIO> "Proyecto M4 - Mateo Zapata"
+
+cd "Proyecto M4 - Mateo Zapata"
+
+npm install
+```
+Crear el archivo local:
+```bash
+Copy-Item .env.example .env
+```
+Completar las variables correspondientes y ejecutar el frontend:
+```bash
+npm run dev
+```
+Vite ejecuta el frontend, pero no las funciones serverless de Vercel.
+
+Para ejecutar localmente el frontend y las funciones API se utiliza:
+```bash
+npx vercel dev
+```
+La prueba del envío AWS también requiere que la política de confianza OIDC autorice el entorno de ejecución utilizado.
+
+
+
+## Testing con Vitest y React Testing Library
+
+Se implementaron pruebas automatizadas para comprobar el comportamiento de los componentes principales y el Hook de tareas.
+
+### Herramientas:
+
+- Vitest 5.
+- React Testing Library.
+- Testing Library DOM.
+- jest-dom.
+- user-event.
+- jsdom.
+
+La configuración se centraliza en vite.config.ts y tests/setup.ts.
+
+### Suite de pruebas
+
+<div align="center">
+
+| Archivo | Pruebas | Cobertura funcional |
+| :--- | :---: | :--- |
+| `TodoForm.test.tsx` | 3 | Creación, validación y cancelación de edición |
+| `TodoList.test.tsx` | 3 | Visualización, estado vacío y acciones CRUD |
+| `useTasks.test.tsx` | 3 | Suscripción, creación y manejo de errores |
+| **Total** | **9** | **9 aprobadas** |
+
+</div>
+
+Los servicios externos se simulan mediante mocks para evitar operaciones reales en Firebase durante las pruebas.
+
+### Comandos
+```bash
+# Ejecución interactiva
+npm run test
+
+# Ejecutar todas las pruebas una sola vez
+npm run test:run
+
+# Compilación de producción
+npm run build
+```
+Resultado verificado: 3 archivos de pruebas aprobados y 9 tests exitosos.
