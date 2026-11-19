@@ -78,8 +78,20 @@ Ayúdame agregando una funcionalidad para validar el formato de un correo electr
 <img width="70%" height="40%" alt="PROMPT 6-3" src="https://github.com/user-attachments/assets/739fdfa1-c257-4739-8326-c6331399a0f1" />
 <img width="70%" height="40%" alt="PROMPT 6-4" src="https://github.com/user-attachments/assets/9cad56ff-2580-442d-8763-7d93b9c8e182" />
 
-La respuesta de la IA permitió incorporar esa función![Uploading PROMPT 6-2.jpg…]()
- al momento de ingresar un correo electrónico y de esta manera garantizar que el usuario no olvide agregar "@" o evitar formatos de email no válidos.
+La respuesta de la IA permitió incorporar esa función al momento de ingresar un correo electrónico y de esta manera garantizar que el usuario no olvide agregar "@" o evitar formatos de email no válidos.
+
+
+## Prompt:
+Agregué estas nuevas reglas para ubicarlas dentro de Firebase Console e hice las tres simulaciones anteriores para confirmar su validez ayúdame a determinar si son correctas para la funcionalidad de mi proyecto y brindarán mejora o generarán complicaciones para después?
+
+<p align="center">
+<img width="60%" height="35%" alt="PROMPT7" src="https://github.com/user-attachments/assets/635a2c1c-0548-4ff4-bd56-0aa7a4002ef4" />
+<img width="60%" height="35%" alt="PROMPT7-1" src="https://github.com/user-attachments/assets/72071dd2-e115-4da7-9e02-bcbd4cd46463" />
+<img width="60%" height="35%" alt="PROMPT7-2" src="https://github.com/user-attachments/assets/b2d93f8a-f678-4bf9-bd71-d86097d26637" />
+
+La respuesta de la IA permitió tener la seguridad de que las nuevas reglas dentro de Firebase cumplían con su funcionalidad y de esta manera se pudo corregir un error que no permitían la correcta simulación de datos ingresados dentro de la consola. Posteriormente se agregaron estas reglas dentro del archivo [`firestore.rules`](./firestore.rules)
+
+
 
 
 
