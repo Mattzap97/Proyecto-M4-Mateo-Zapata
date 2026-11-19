@@ -168,3 +168,24 @@ Cada documento contiene los siguientes campos:
 
 </div>
 
+### Persistencia y sincronización
+Las consultas filtran las tareas mediante:
+
+```where("userId", "==", userId)```
+
+Las operaciones CRUD se concentran en taskService.ts y se consumen mediante useTasks.ts.
+Se utiliza onSnapshot para mantener la interfaz sincronizada con los cambios de Firestore y cancelar correctamente las suscripciones cuando dejan de ser necesarias.
+
+### Seguridad de Firestore
+
+Las reglas se configuran bajo el principio de denegación por defecto:
+
+- Solo usuarios autenticados pueden acceder.
+- El UID debe coincidir con el userId del documento.
+- No se permite modificar el propietario de una tarea.
+- Se validan los campos obligatorios y sus tipos básicos.
+- Las operaciones de usuarios diferentes quedan aisladas.
+
+Se realizaron simulaciones en Firebase Rules Playground con usuarios autenticados y no autenticados para comprobar las condiciones de acceso.
+
+Las reglas aplicadas se deben mantener versionadas en el repositorio como firestore.rules para facilitar su revisión y despliegue.
