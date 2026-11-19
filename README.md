@@ -290,18 +290,18 @@ El proyecto utiliza .env para desarrollo local y .env.example como plantilla sin
 
 ### Firebase — Frontend
 ```
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
 ```
 ### AWS — Backend
 ```
 AWS_REGION=us-east-2
-AWS_ROLE_ARN=
-SES_FROM_EMAIL=
+AWS_ROLE_ARN=your_aws_role_arn
+SES_FROM_EMAIL=email@example-com
 ```
 Las variables VITE_FIREBASE_* corresponden a la configuración web pública de Firebase. Las variables de AWS se utilizan exclusivamente en el servidor.
 
@@ -485,5 +485,5 @@ Se utilizaron ChatGPT y Gemini mediante Antigravity IDE como herramientas de apo
 - Diseñar pruebas con Vitest y React Testing Library.
 - Mejorar el diseño responsive sin romper las reglas CSS para Mobile-first previamente desarrolladas.
 
-Detalle completo de los prompts usados, en orden y con el contexto de qué resolvía cada uno, en
+Detalle completo de los prompts usados, en orden y con el contexto de qué resolvía cada uno, en [`USO DE LA IA`](./Documentacion/USO-DE-LA-IA.md)
 
