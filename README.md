@@ -395,6 +395,9 @@ npm run build
 Resultado verificado: 3 archivos de pruebas aprobados y 9 tests exitosos.
 
 
+![Captura de pantalla de vitest](/Documentacion/screenshots/VITEST.jpg)
+
+
 ## Reglas de seguridad de Cloud Firestore 🛡
 
 El archivo [`firestore.rules`](./firestore.rules)  garantiza el principio de mínimo privilegio:
