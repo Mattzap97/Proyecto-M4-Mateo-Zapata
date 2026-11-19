@@ -39,6 +39,7 @@ Repositorio GitHub: https://github.com/Mattzap97/Proyecto-M4-Mateo-Zapata
 ## Tecnologías utilizadas
 
 <div align="center">
+
   
 | Tecnología | Función |
 | :--- | :--- |
@@ -57,6 +58,88 @@ Repositorio GitHub: https://github.com/Mattzap97/Proyecto-M4-Mateo-Zapata
 | **jsdom** | Simulación del entorno DOM |
 | **CSS nativo** | Diseño responsive Mobile First |
 | **Git y GitHub** | Control de versiones |
+
   
 </div>
+
+
+## Arquitectura y estructura del proyecto
+
+El proyecto utiliza una arquitectura por capas que separa componentes visuales, lógica de negocio, servicios externos y tipos compartidos.
+```
+Proyecto M4 - Mateo Zapata/
+│
+├── api/
+│   └── send-summary.ts
+│
+├── src/
+│   ├── components/
+│   │   ├── auth/
+│   │   │   ├── LoginForm.tsx
+│   │   │   └── RegisterForm.tsx
+│   │   └── tasks/
+│   │       ├── TodoForm.tsx
+│   │       ├── TodoItem.tsx
+│   │       └── TodoList.tsx
+│   │
+│   ├── features/
+│   │   └── auth/
+│   │       └── AuthProvider.tsx
+│   │
+│   ├── hooks/
+│   │   ├── useAuth.ts
+│   │   └── useTasks.ts
+│   │
+│   ├── pages/
+│   │   ├── LoginPage.tsx
+│   │   ├── RegisterPage.tsx
+│   │   └── TasksPage.tsx
+│   │
+│   ├── routes/
+│   │   └── ProtectedRoute.tsx
+│   │
+│   ├── services/
+│   │   ├── firebase/
+│   │   │   ├── authService.ts
+│   │   │   ├── firebaseConfig.ts
+│   │   │   └── taskService.ts
+│   │   └── emailService.ts
+│   │
+│   ├── types/
+│   │   └── task.ts
+│   │
+│   ├── utils/
+│   │   └── authErrors.ts
+│   │
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+│
+├── tests/
+│   ├── components/
+│   │   ├── TodoForm.test.tsx
+│   │   └── TodoList.test.tsx
+│   ├── hooks/
+│   │   └── useTasks.test.tsx
+│   └── setup.ts
+│ 
+├── .env.example
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── README.md
+├── vercel.json
+└── vite.config.ts
+```
+
+### Decisiones arquitectónicas
+
+- **AuthProvider y useAuth:** centralizan el estado de autenticación.
+- **useTasks:** concentra las operaciones CRUD y la suscripción a tareas.
+- **taskService.ts:** separa las consultas y operaciones de Firestore de los componentes.
+- **ProtectedRoute:** controla el acceso a las rutas privadas.
+- **emailService.ts:** comunica el frontend con la función serverless.
+- **api/send-summary.ts:** verifica la sesión, consulta las tareas del usuario y solicita el envío mediante SES.
+- **api/:** se utiliza en lugar de una carpeta functions/ porque Vercel reconoce automáticamente esta estructura para sus funciones serverless.
 
