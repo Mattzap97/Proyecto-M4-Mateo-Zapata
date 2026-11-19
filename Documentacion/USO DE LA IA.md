@@ -58,6 +58,11 @@ Actúa como asistente de desarrollador full stack y ayúdame a identificar este 
 La respuesta de la IA permitió entender que no se trataba de un error de Firebase o ReactRouter, sino más bien que se trataba de un error de Typescript relacionado con el manejo de errores null. Esto permitió modificar dos líneas del código que estaban fallando para agregar Optional Chaining (?.).
 
 
+## Prompt: 
+
+Ayúdame implementando un mensaje en la parte inferior de /login que muestre al usuario: "¿no tienes una cuenta? regístrate aquí". Para que permita dar click en "regístrate aquí" y redireccione al usuario a /register para completar el formulario de registro.
+
+
 
 
 
