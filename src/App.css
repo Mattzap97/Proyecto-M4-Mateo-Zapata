@@ -632,12 +632,13 @@
 @media (min-width: 480px) {
   .task-delete-dialog__actions {
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   .task-delete-dialog__actions button {
-    width: auto;
-    min-width: 130px;
+    flex: 0 1 150px;
+    width: 150px;
+    min-width: 0;
   }
 }
 
