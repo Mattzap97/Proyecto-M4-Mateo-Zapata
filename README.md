@@ -38,67 +38,25 @@ Repositorio GitHub: https://github.com/Mattzap97/Proyecto-M4-Mateo-Zapata
 
 ## Tecnologías utilizadas
 
-Tecnología
-
-Función
-
-React 19 + TypeScript
-
-Interfaz y tipado estático
-
-Vite 8
-
-Desarrollo y compilación
-
-React Router
-
-Navegación SPA y rutas protegidas
-
-Firebase Authentication
-
-Autenticación de usuarios
-
-Cloud Firestore
-
-Base de datos NoSQL y sincronización
-
-AWS SES
-
-Envío de correos electrónicos
-
-AWS SDK v3 (client-sesv2)
-
-Comunicación con SES
-
-Vercel Functions
-
-Backend serverless
-
-Vercel OIDC + IAM
-
-Credenciales temporales para AWS
-
-jose
-
-Verificación de tokens JWT
-
-Vitest 5
-
-Pruebas automatizadas
-
-React Testing Library
-
-Pruebas de componentes
-
-jsdom
-
-Simulación del entorno DOM
-
-CSS nativo
-
-Diseño responsive Mobile First
-
-Git y GitHub
-
-Control de versiones
+<div align="center">
+  
+| Tecnología | Función |
+| :--- | :--- |
+| **React 19 + TypeScript** | Interfaz y tipado estático |
+| **Vite 8** | Desarrollo y compilación |
+| **React Router** | Navegación SPA y rutas protegidas |
+| **Firebase Authentication** | Autenticación de usuarios |
+| **Cloud Firestore** | Base de datos NoSQL y sincronización |
+| **AWS SES** | Envío de correos electrónicos |
+| **AWS SDK v3 (client-sesv2)** | Comunicación con SES |
+| **Vercel Functions** | Backend serverless |
+| **Vercel OIDC + IAM** | Credenciales temporales para AWS |
+| **jose** | Verificación de tokens JWT |
+| **Vitest 5** | Pruebas automatizadas |
+| **React Testing Library** | Pruebas de componentes |
+| **jsdom** | Simulación del entorno DOM |
+| **CSS nativo** | Diseño responsive Mobile First |
+| **Git y GitHub** | Control de versiones |
+  
+</div>
 
