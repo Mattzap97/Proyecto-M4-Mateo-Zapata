@@ -487,3 +487,13 @@ Se utilizaron ChatGPT y Gemini mediante Antigravity IDE como herramientas de apo
 
 Detalle completo de los prompts usados, en orden y con el contexto de qué resolvía cada uno, en [`USO DE LA IA`](./Documentacion/USO%20DE%20LA%20IA.md)
 
+
+## 🙌 Créditos y agradecimientos
+
+**Desarrollado por:** Mateo Zapata.
+
+MateCode es un proyecto académico desarrollado como parte del Integrador del Módulo 4 de Henry, que representa una experiencia práctica en desarrollo frontend, gestión de datos y servicios en la nube.
+
+Durante su construcción se aplicaron conocimientos de React, TypeScript, Firebase Authentication, Cloud Firestore, AWS SES, pruebas automatizadas y despliegue en Vercel.
+
+Este proyecto refleja el aprendizaje continuo, la experimentación y la aplicación práctica de buenas prácticas de desarrollo de software.
