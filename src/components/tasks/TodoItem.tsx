@@ -1,26 +1,7 @@
-
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { Task } from "../../types/task";
 
-
-// Formatear fechas de Firestore
-const formatTaskDate = (
-    timestamp: Task["createdAt"] | null | undefined
-) => {
-    if (!timestamp || typeof timestamp.toDate !== "function") {
-        return null;
-    }
-
-    const date = timestamp.toDate();
-
-    return {
-        label: new Intl.DateTimeFormat("es-EC", {
-            dateStyle: "medium",
-            timeStyle: "short",
-        }).format(date),
-        iso: date.toISOString(),
-    };
-};
 
 
 interface TodoItemProps {
@@ -38,9 +19,35 @@ const TodoItem = ({
 }: TodoItemProps) => {
 
     const [loading, setLoading] = useState(false);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
-    const createdAt = formatTaskDate(task.createdAt);
-    const updatedAt = formatTaskDate(task.updatedAt);
+    const cancelButtonRef = useRef<HTMLButtonElement>(null);
+    const deletingRef = useRef(false);
+
+
+
+    // Gestionar el foco y la tecla Escape de la ventana
+    useEffect(() => {
+        if (!showDeleteConfirmation) return;
+
+        const previousFocus = document.activeElement as HTMLElement | null;
+
+        cancelButtonRef.current?.focus();
+
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape" && !deletingRef.current) {
+                setShowDeleteConfirmation(false);
+            }
+        };
+
+        document.addEventListener("keydown", handleEscape);
+
+        return () => {
+            document.removeEventListener("keydown", handleEscape);
+            previousFocus?.focus();
+        };
+    }, [showDeleteConfirmation]);
+
 
 
     // Cambiar estado
@@ -55,13 +62,17 @@ const TodoItem = ({
     };
 
 
-    // Eliminar tarea
+
+    // Eliminar tarea después de confirmar
     const handleDelete = async () => {
         setLoading(true);
+        deletingRef.current = true;
 
         try {
             await onDelete(task.id);
+            setShowDeleteConfirmation(false);
         } finally {
+            deletingRef.current = false;
             setLoading(false);
         }
     };
@@ -118,7 +129,7 @@ const TodoItem = ({
                     <button
                         type="button"
                         className="button-danger"
-                        onClick={handleDelete}
+                        onClick={() => setShowDeleteConfirmation(true)}
                         disabled={loading}
                     >
                         Eliminar
@@ -126,46 +137,64 @@ const TodoItem = ({
 
                 </div>
 
-                {/* Información de fechas */}
-                <div className="task-metadata">
-
-                    <p className="task-metadata__item">
-                        <span className="task-metadata__icon" aria-hidden="true">
-                            ◷
-                        </span>
-
-                        <span>
-                            <strong>Creada:</strong>{" "}
-                            {createdAt ? (
-                                <time dateTime={createdAt.iso}>
-                                    {createdAt.label}
-                                </time>
-                            ) : (
-                                "No disponible"
-                            )}
-                        </span>
-                    </p>
-
-                    <p className="task-metadata__item">
-                        <span className="task-metadata__icon" aria-hidden="true">
-                            ↻
-                        </span>
-
-                        <span>
-                            <strong>Última actualización:</strong>{" "}
-                            {updatedAt ? (
-                                <time dateTime={updatedAt.iso}>
-                                    {updatedAt.label}
-                                </time>
-                            ) : (
-                                "No disponible"
-                            )}
-                        </span>
-                    </p>
-
-                </div>
-
             </article>
+
+            {/* Ventana de confirmación */}
+            {showDeleteConfirmation && createPortal(
+
+                <div className="task-delete-backdrop">
+
+                    <section
+                        className="task-delete-dialog"
+                        role="alertdialog"
+                        aria-modal="true"
+                        aria-labelledby="delete-dialog-title"
+                        aria-describedby="delete-dialog-description"
+                    >
+
+                        <div className="task-delete-dialog__icon">
+                            !
+                        </div>
+
+                        <h2 id="delete-dialog-title">
+                            ¿Eliminar esta tarea?
+                        </h2>
+
+                        <p id="delete-dialog-description">
+                            ¿Estás seguro de que deseas eliminar{" "}
+                            <strong>"{task.title}"</strong>?
+                            Esta acción no se puede deshacer.
+                        </p>
+
+                        <div className="task-delete-dialog__actions">
+
+                            <button
+                                ref={cancelButtonRef}
+                                type="button"
+                                className="task-delete-dialog__cancel"
+                                onClick={() => setShowDeleteConfirmation(false)}
+                                disabled={loading}
+                            >
+                                No, conservar
+                            </button>
+
+                            <button
+                                type="button"
+                                className="task-delete-dialog__confirm"
+                                onClick={handleDelete}
+                                disabled={loading}
+                            >
+                                {loading ? "Eliminando..." : "Sí, eliminar"}
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                </div>,
+
+                document.body
+            )}
 
         </li>
     );
