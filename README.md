@@ -143,3 +143,28 @@ Proyecto M4 - Mateo Zapata/
 - **api/send-summary.ts:** verifica la sesión, consulta las tareas del usuario y solicita el envío mediante SES.
 - **api/:** se utiliza en lugar de una carpeta functions/ porque Vercel reconoce automáticamente esta estructura para sus funciones serverless.
 
+
+## Firebase Authentication y Cloud Firestore
+
+### Autenticación
+Se habilitaron los proveedores Email/Password y Google en Firebase Authentication.
+La configuración de Firebase se centraliza en firebaseConfig.ts, utilizando variables de entorno.
+
+### Modelo de datos
+La colección utilizada es tasks, dentro de la base de datos (default) del proyecto Firebase.
+Cada documento contiene los siguientes campos:
+
+<div align="center">
+
+| Campo | Tipo |
+| :--- | :--- |
+| `id` | `string` (ID del documento) |
+| `userId` | `string` |
+| `title` | `string` |
+| `description` | `string` |
+| `completed` | `boolean` |
+| `createdAt` | `Timestamp` |
+| `updatedAt` | `Timestamp` |
+
+</div>
+
