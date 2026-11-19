@@ -481,7 +481,6 @@ Se utilizaron ChatGPT y Gemini mediante Antigravity IDE como herramientas de apo
 - Comprender React, TypeScript, Hooks y Context API.
 - Diseñar la separación de responsabilidades.
 - Diagnosticar errores de Firebase, Firestore y Vercel.
-- Configurar AWS SES, IAM y OIDC.
 - Diseñar pruebas con Vitest y React Testing Library.
 - Mejorar el diseño responsive sin romper las reglas CSS para Mobile-first previamente desarrolladas.
 
