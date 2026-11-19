@@ -189,3 +189,32 @@ Las reglas se configuran bajo el principio de denegación por defecto:
 Se realizaron simulaciones en Firebase Rules Playground con usuarios autenticados y no autenticados para comprobar las condiciones de acceso.
 
 Las reglas aplicadas se deben mantener versionadas en el repositorio como firestore.rules para facilitar su revisión y despliegue.
+
+## Integración con AWS SES y Vercel
+
+Amazon SES se utiliza para enviar los resúmenes de tareas al correo electrónico del usuario autenticado.
+
+### Configuración de infraestructura:
+
+- Servicio: Amazon Simple Email Service.
+- Región: us-east-2 (Ohio).
+- Identidad remitente: dirección de correo verificada en SES.
+- SDK: @aws-sdk/client-sesv2.
+- Endpoint: POST /api/send-summary.
+- Ejecución: Vercel Functions.
+
+### Autenticación AWS mediante OIDC
+
+Se configuró un proveedor OpenID Connect de Vercel y un rol IAM específico:
+
+- Proveedor: oidc.vercel.com/proyectos-mateo-zapata.
+- Proyecto Vercel: proyecto-m4-mateo-zapata.
+- Rol IAM: MateCode-Vercel-SES-Role.
+- Política: MateCode-SESSendEmail.
+
+La política limita el permiso de envío a ses:SendEmail y a la identidad remitente autorizada.
+
+La política de confianza del rol restringe la identidad OIDC al proyecto y al entorno production.
+
+Esta arquitectura permite utilizar credenciales temporales de AWS y evita almacenar claves permanentes en el frontend.
+
